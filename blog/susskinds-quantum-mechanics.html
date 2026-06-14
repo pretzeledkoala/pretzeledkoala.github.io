@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Susskind's Quantum Mechanics - Gary Hu</title>
+<link rel="stylesheet" href="/style.css">
+<script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]}}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+<div class="container">
+<header>
+<nav><a href="/">Home</a> &middot; <a href="/blog/index.html">Blog</a></nav>
+<h1>Susskind's Quantum Mechanics</h1>
+<p class="post-meta">2024-06-01</p>
+</header>
+<main>
+
+
+<p>Notes from watching Leonard Susskind's <a href="https://theoreticalminimum.com/">Theoretical Minimum</a> series. Scribed notes for what I've learned, ideally at a level that's easy to understand. Another goal of this blog is to be succinct - these notes came from 18.5 hours of lectures, which were then turned into a ~400 page book. To be more succinct, I will also leave out some details and avoid being overly wordy; the reader should think of these notes as a skeleton for the actual course, rather than a replacement.</p>
+
+<p>Please reach out to me if you would like to discuss anything here or have any questions!</p>
+
+<h1>Table of Contents</h1>
+
+
+
+<h1>Lecture 1 - Systems and Experiments</h1>
+
+<p>Classical mechanics is intuitive because we can visualize the objects being studied. While it becomes mathematically abstract with concepts like Lagrangians and Poisson brackets, its basic principles are motivated by the observable world. In classical mechanics, we consider 1) a system of objects, and 2) the state of this system. Its deterministic nature means that knowing the system's state at any given time allows us to predict its future behavior.</p>
+
+<p>Beyond classical mechanics, abstraction increases. Our brains operate in three dimensions, making it impossible to visualize higher or lower dimensions accurately. No one can visualize 4 dimensions, and when we visualize lower dimensions (say 2d), we are seeing a 2d plane embedded in 3 dimensions. Good physicists excel not in visualizing higher dimensions but in using abstract mathematics to describe them. Thus, understanding quantum mechanics requires relying on abstract math rather than trying to visualize it as an extension of classical mechanics.</p>
+
+<p>In classical mechanics, the key question is: what is the state of a closed system? The space of states encompasses all possible states of a system. For example, a die has the state space ${1,2,3,4,5,6}$, and a coin has ${\text{heads}, \text{tails}}$. For a point particle on a line, the phase space includes all possible positions and momenta, forming a continuously infinite, two-dimensional line that we can graph.</p>
+
+<p>Consider the die again. If we look at two subsets: </p>
+<p>    1) odd numbers: ${1,3,5}$</p>
+<p>    2) numbers $\leq 3$: ${1,2,3}$.</p>
+<p>We see that "AND" is their intersection: ${1,3}$, and "OR" is their union: ${1,2,3,5}$. These concepts come from set theory, but in quantum mechanics, the space of states is a vector space, not a set.</p>
+
+<p>Rather than diving into vector spaces, let's focus on experiments.</p>
+
+<h2>Experiments</h2>
+
+<p>Let's examine a coin in classical mechanics (cbit) and quantum mechanics (qubit). The quantum analog is more intriguing. Each qubit has two states: heads or tails, represented by $\sigma=+1$ for heads ($\uparrow$) and $\sigma=-1$ for tails ($\downarrow$).</p>
+
+<p>We also have an apparatus with "THIS SIDE UP" sign. When placed upright, the apparatus detects the qubit's state and displays $\sigma$ on the screen. Instead of just measuring, think of this as preparing the system. If we measure $\sigma=+1$, reset the apparatus, and quickly repeat the experiment with the same qubit, the screen consistently shows $+1$. Thus, the apparatus not only determines but rather prepares the qubit's state.</p>
+
+<p>Let's flip the apparatus so that "THIS SIDE UP" is on the bottom, orienting it downwards. Now, redoing the experiment with the same qubit gives $\sigma=-1$. Repeating the experiment consistently yields $\sigma=-1$, but flipping the apparatus back shows $\sigma=+1$ again. This suggests the qubit has directionality, indicating it behaves like a vector. Alternatively, the detector's orientation could influence the screen to display the vector component along its direction.</p>
+
+<p>What if we rotate the apparatus $90^\circ$ so "THIS SIDE UP" points left? Using multiple $\uparrow$ qubits one after another, we expect the screen to display 0, as the horizontal component of $\uparrow$ is 0. In classical physics, this would happen. However, in quantum mechanics, the screen shows either $+1$ or $-1$, averaging to 0 over many trials, so the probability of getting $+1$ and $-1$ is the same.</p>
+
+<p>If we generalize by changing the angle to $\theta^\circ$, the horizontal component of the $\uparrow$ vector along this tilt is $\cos{\theta}$. Classically, we'd expect the output to be $\cos{\theta}$. In the quantum world, the output is still $+1$ or $-1$, but the average value over many trials will be $\cos{\theta}$.</p>
+
+<h2>Some Mathematics</h2>
+
+<p>Let's diverge our discussion to introduce more mathematics - let's discuss vector spaces. For now, it suffices to define a vector space. Normally, we use $\vec{v}$ or $\textbf{v}$ to denote vectors; in quantum mechanics, we use bra-ket notation, where $\langle v |$ is a bra, and $| v\rangle$ is a ket. We can now define a vector space as follows:</p>
+
+
+<p>    A <strong>vector space</strong> $V$ is a collection of vectors $| v\rangle$, satisfying the following:</p>
+
+<ol>
+<li>Addition: $|a \rangle + |b\rangle = |c\rangle$, where $|a \rangle, |b\rangle, |c\rangle \in V$.</li>
+<p></ol></p>
+
+<ol>
+<li>Multiplication: $z |a \rangle = |a' \rangle$ for $z\in \mathbb{C}$ and $|a \rangle, |a' \rangle \in V$.</li>
+<p></ol></p>
+
+
+
+<p>    There are a couple more axioms that are generally used (ie. there is a zero; that is, a vector $| 0 \rangle$ such that $| 0 \rangle + |a \rangle = |a \rangle$ for $|a \rangle \in V$), but professor Susskind ignores them for now.</p>
+
+
+<p>Let's take a look at a few examples:</p>
+
+
+<ol>
+<li>The real numbers are a real vector space, because we require $z\in \mathbb{R}$.</li>
+<li>The complex numbers are a complex vector space.</li>
+<li>Functions form a vector space.</li>
+<li>The collection of all vectors $\begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_n \end{pmatrix}$ with $\alpha_1, \alpha_2, ..., \alpha_n \in \mathbb{C}$ is a vector space.</li>
+<p></ol></p>
+
+
+<p>Now, let's introduce the idea of a dual vector space. Given a vector space $V$, we construct a dual vector space $V^\vee$. The basic idea is for every vector $| v \rangle \in V$, there is a vector $\langle v | \in V^\vee$.</p>
+
+<p>We can formulate this more rigorously as follows:</p>
+
+<p>    Given a vector space $V$ containing vectors $|v\rangle$, the <strong>dual vector space</strong> $V^\vee$ contains vectors $\langle v |$, such that there is a 1-to-1 correspondence between:</p>
+
+<ol>
+<li>$|a \rangle \leftrightarrow \langle a |$</li>
+<p></ol></p>
+
+<ol>
+<li>$|a\rangle + |b\rangle \leftrightarrow \langle a | + \langle b |$.</li>
+<p></ol></p>
+
+<ol>
+<li>$z|a \rangle \leftrightarrow \langle a | z^<em>$, where $z^</em>$ is the complex conjugate of $z$.</li>
+<p></ol></p>
+
+
+<p>Now, let's define the inner product, the analogue of the dot product.</p>
+
+
+<p>    Given $\langle a |$ and $|b\rangle$, the <strong>inner product</strong> is an operation that gives $\langle a|b\rangle$, which satisfies $\langle a|b\rangle = \langle b|a\rangle^*$.</p>
+
+
+<p>Let's look at an example.</p>
+
+
+<p>    Define $\langle b|a\rangle = (\beta_1^<em>, \beta_2^</em>) \begin{pmatrix} \alpha_1 \\ \alpha_2 \end{pmatrix} = \beta_1^<em> \alpha_1 + \beta_2^</em> \alpha_2$. Then $\langle a|b\rangle = (\alpha_1^<em>, \alpha_2^</em>) \begin{pmatrix} \beta_1 \\ \beta_2 \end{pmatrix} = \alpha_1^<em> \beta_1 + \alpha_2^</em> \beta_2$. Now we can see $\langle a|b\rangle \langle b|a\rangle^*$.</p>
+
+
+<p>What if we set $b=a$? Then $\langle a|a\rangle = \langle a|a\rangle^*$, so the inner product of any vector with itself is always positive and real. This value is generally known as the <strong>length</strong> of a vector.</p>
+
+<p>We say two vectors are <strong>orthogonal</strong> if $\langle b|a \rangle=0$. Define the <strong>dimension</strong> of a vector space is the maximum number of nonzero mutually orthogonal vectors. For example, in the vector space of 2d column vectors, $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$ and $\begin{pmatrix} 0 \\ 1 \end{pmatrix}$ are orthogonal, and since there are no other nonzero mutually orthogonal vectors, this vector space is of dimension $2$.</p>
+
+<h1>Lecture 2 - Quantum States</h1>
+
+<h2>Logic</h2>
+<p>Let's rename $\uparrow$ to spin up, and $\downarrow$ spin down. When we measure a spin up qubit in an upwards oriented apparatus, we are measuring $\sigma_z = \pm 1$ - the $z$-component of the spin. And if we turn the apparatus on it's side, we get $\sigma_x=\pm 1$. And so on...</p>
+
+<p>Now we generalize. Suppose we have previously prepared an experiment where everything is oriented in the $\hat{n}$ axis. Then, we rotate the apparatus in 3d space so that the orientation vector points in the $\hat{m}$ direction. It turns out that the average value of the experiment is $\langle \sigma_m \rangle = \hat{n}\cdot \hat{m} = \cos{\theta}$, the component of $\hat{n}$ along $\hat{m}$.</p>
+
+<p>Classically, proposition about the state of a system is a subset for which a proposition is true. One type of a proposition is a NOT statement, which is exactly what it sounds like - the subset of things that do not satisfy the proposition. A proposition can be either TRUE, or FALSE. Two other types of propositions we've seen already are AND and OR statements - they are different in quantum mechanics. In english, there are two types of OR - the inclusive one (the union) and the exclusive one (in one subset, but not the other). Generally when we speak, we mean the exclusive one, but in logic, we mean the inclusive OR (the union).</p>
+
+<p>Take two propositions:</p>
+<ul>
+<li>$A: \sigma_z=+ 1$</li>
+<li>$B: \sigma_x=+ 1$</li>
+<p></ul></p>
+
+<p>Let's design an experiment to check $A$ OR $B$ on $\uparrow$. Let's measure the spin along the $z$-axis, first. Orient the apparatus in the upward direction, and run the experiment. If this is true, we are done. $A$ OR $B$ is TRUE because the OR only requires that one of them be true.</p>
+
+<p>Let's redo the experiment, but flip the order of $A$ and $B$. </p>
+<ul>
+<li>We will get $\sigma_x=+1$ with $\frac{1}{2}$ probability. Then $A$ OR $B$ is TRUE.</li>
+<li>We will get $\sigma_x=-1$ with $\frac{1}{2}$ probability, so we need to test $B$. Since we prepared the spin arrow to point to the sideways to test $A$, when we test $B$, we will get $\frac{1}{2}$ chance it lands $+1$, and $\frac{1}{2}$ chance it lands $-1$.</li>
+<p></ul></p>
+<p>So the chance $B$ OR $A$ is true is $\frac{1}{2}+\frac{1}{4}=\frac{3}{4}$, so order does matter.</p>
+
+<p>The space of states of a quantum system is a linear vector space, so given any two states, we can add them to create a third space. You cannot do this with sets - given two elements of a set, you can't always add them together to make a third element.</p>
+
+<h2>The Connection</h2>
+
+<p>Finally, let's state the connection between a vector space and the space of states of a quantum statement. In our previous experiment, we saw that: $\sigma_z, \sigma_x,$ or $\sigma_y=\pm 1$. Let's rename these to $|U\rangle$ (up), $|D\rangle$ (down), $|L \rangle$ (left), $|R\rangle$ (right), $|I\rangle$ (in), and $|O\rangle$ (out). Suppose we had a ket vector $|A \rangle = \alpha_U | U \rangle + \alpha_D | D\rangle$. The probability of getting up, would be $P_u=\alpha_u^<em> \alpha_u$, and the probability of getting down is $\alpha_d^</em> \alpha_d$. </p>
+
+<p>One basic postulate that we will accept is orthogonality means that two things are sufficiently different that with a single experiment you can tell the difference. So $|U\rangle$ and $|D\rangle$ are orthogonal to each other. We will show that these can be the basis for our vector space (of dimension $2$).</p>
+
+<p>Since $P_U + P_D=1$, we have $\alpha_u^<em> \alpha_u + \alpha_d^</em>\alpha_d = 1 \leftrightarrow \langle A | A \rangle =1$. Using similar ideas, we can guess that $|R \rangle = \frac{1}{\sqrt{2}} |U\rangle + \frac{1}{\sqrt{2}}|D\rangle$ and $|L \rangle = \frac{1}{\sqrt{2}} |U\rangle - \frac{1}{\sqrt{2}}|D\rangle$. We can now derive the identities:</p>
+<p>    \begin{align*}</p>
+<p>        \dfrac{|R \rangle + | L \rangle}{\sqrt{2}}&= |U\rangle \\</p>
+<p>        \dfrac{|R \rangle - | L \rangle}{\sqrt{2}}&= |D\rangle \\</p>
+<p>    \end{align*}</p>
+<p>Furthermore, we can show that $|I\rangle =-\frac{1}{\sqrt{2}}|U\rangle + \frac{i}{\sqrt{2}}|D\rangle$ and $|O \rangle = \frac{1}{\sqrt{2}}|U\rangle - \frac{i}{\sqrt{2}}|D\rangle$.</p>
+
+<p>We can rewrite everything as column vectors to conclude the following:</p>
+<p>    \begin{align*}</p>
+<p>        |U \rangle = \begin{pmatrix} 1\\ 0 \end{pmatrix} \qquad & \qquad |D \rangle = \begin{pmatrix} 0\\ 1 \end{pmatrix} \\</p>
+<p>        |R \rangle = \begin{pmatrix} \frac{1}{\sqrt{2}}\\ \frac{1}{\sqrt{2}} \end{pmatrix} \qquad & \qquad |L \rangle = \begin{pmatrix} \frac{1}{\sqrt{2}}\\ -\frac{1}{\sqrt{2}} \end{pmatrix} \\</p>
+<p>        |I \rangle = \begin{pmatrix} \frac{1}{\sqrt{2}}\\ \frac{i}{\sqrt{2}} \end{pmatrix} \qquad & \qquad |O \rangle = \begin{pmatrix} \frac{1}{\sqrt{2}}\\ -\frac{i}{\sqrt{2}} \end{pmatrix} \\</p>
+<p>    \end{align*}</p>
+<h1>Lecture 3 - Principles of Quantum Mechanics</h1>
+
+<h2>More Linear Algebra</h2>
+
+<p>Let $|i\rangle$ be basis vectors (mutually orthonormal vectors). Then we can write any element in our vector space as a linear combination of the basis vectors, ie. $|A\rangle = \sum_i \alpha_i |i \rangle$ for $\alpha_i \in \mathbb{C}$.</p>
+
+<p>We can now do inner products: $\langle j | A \rangle = \sum_i \alpha_i \langle j | i \rangle = \alpha_i \delta_{ji}$, where $\delta_{ji}$ is the Kronecker delta function:</p>
+<p>    \delta_{ij} = </p>
+<p>\begin{cases} </p>
+<p>1 & \text{if } i = j \\</p>
+<p>0 & \text{otherwise}</p>
+<p>\end{cases}</p>
+<p>So $|A\rangle = \sum_i |i \rangle \langle i | a\rangle$, which is a useful identity used to simplify things. The exact same thing is true for bra vectors: $\langle A | = \sum_i \langle A|i \rangle \langle i|$.</p>
+
+<p>Here's another reason why we want to use linear algebra: observables (thing we measure) are linear operators.</p>
+
+
+<p>    A <strong>linear operator</strong> $M$, acting on $|A\rangle$, gives a unique ket vector $|B\rangle$ satisfying:</p>
+
+<ol>
+<li>$M[z|A \rangle]=zM|A\rangle$.</li>
+<li>$M[|A\rangle + |B\rangle ]=M|A\rangle + M|B\rangle$.</li>
+<p></ol></p>
+
+
+<p>Using this definition, we can show that</p>
+<p>    \langle i | M |A\rangle = \langle i | B \rangle = \beta_i</p>
+<p>Using our useful identity, we can rewrite this as</p>
+<p>    \sum_j \langle i | M |A \rangle \langle j|A \rangle = \langle i | M |j \rangle \alpha_j =\beta_i.</p>
+<p>We define the <strong>matrix elements</strong> as $M_{ij} := \langle i | M |j \rangle$, which are important because it's possible to characterize linear operators by these matrix elements. So we can rewrite $\sum_j \langle i | M |A \rangle \langle j|A \rangle$ in two other ways: $\sum_j M_{ij}a_j = \beta_i$, and </p>
+<p>    \begin{pmatrix} M_{11} & M_{12} & M_{13} & ... \\ </p>
+<p>M_{21} & M_{22} & M_{23} & ... \\</p>
+<p>M_{31} & M_{32} & M_{33} & ... \\</p>
+<p>\vdots & \vdots & \vdots & ... \end{pmatrix} \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ ... \\ \alpha_N \end{pmatrix} = \begin{pmatrix} \beta_1 \\ \beta_2 \\ ... \\ \beta_N \end{pmatrix}</p>
+<p>Since we have matrices, it will be useful to define eigenvectors.</p>
+
+<p>    The <strong>eigenvectors</strong> of $M$ are vectors $|\lambda_i \rangle$ such that $M|\lambda_i \rangle - \lambda_i | \lambda_i \rangle =0$, and each eigenvector $|\lambda_i\rangle$ has <strong>eigenvalue</strong> $\lambda_i$.</p>
+
+<p>These are the vectors which the direction before and after applying the operator is the same, and the only thing that happens to the vector is that it's scaled, and this scaling factor is called the eigenvalue.</p>
+
+<p>We defined linear operators on ket vectors; they can also be defined on bra vectors by through</p>
+<p>    \langle B | M = (\beta_1^<em> \beta_2^</em> ... \beta_N^*)\begin{pmatrix} M_{11} & M_{12} & M_{13} & ... \\ </p>
+<p>M_{21} & M_{22} & M_{23} & ... \\</p>
+<p>M_{31} & M_{32} & M_{33} & ... \\</p>
+<p>\vdots & \vdots & \vdots & ... \end{pmatrix}</p>
+<p>One may think that $M|A\rangle =|B\rangle \leftrightarrow \langle A| M = \langle B|$, but this is wrong. The correct answer is that $M|A\rangle =|B\rangle \leftrightarrow \langle A| M^\dagger = \langle B|$, where $M^\dagger = [M^T]^<em>$ (ie. change $m_ji$ to $m_{ij}^</em>$: first transpose the matrix, then complex conjugate all of it's entries) is the <strong>Hermitian conjugate</strong>.</p>
+
+<p>Since quantum mechanical measurements are always real, quantum mechanical observables are represented by <strong>Hermitian operators</strong>, which satisfy the property $M=M^\dagger$. Professor Susskind calls this the <strong>fundamental theorem</strong> because of how important it is. One nice property of these Hermitian operators is that the eigenvalue of a Hermitian operator must be real: For a Hermitian operator $L$, $L|\lambda \rangle = \lambda | \lambda \rangle \implies \langle \lambda | L | \lambda \rangle = \lambda \langle \lambda | \lambda \rangle$ and $\langle | L = \langle | L^\dagger = \langle \lambda | \lambda^<em> \implies \langle \lambda | L | \lambda = \lambda^</em> \langle \lambda | \lambda \rangle$, so $\lambda = \lambda^* \implies \lambda$ is real. We can state the fundamental theorem more precisely as follows:</p>
+
+
+<p>    The eigenvectors of a Hermitian operator form an orthonormal basis.</p>
+
+
+<p>    Take $L|\lambda_1 \rangle = \lambda_1| \lambda_1 \rangle \leftrightarrow \langle \lambda_1|L = \lambda_1 \langle \lambda_1 |$ and $L|\lambda_2 \rangle = \lambda_1| \lambda_1 \rangle$. Inner producting things together gives $\langle \lambda_1 | L | \lambda_2 \rangle = \lambda_1 \langle \lambda_1 | \lambda_2 \rangle$ and $\langle \lambda_1 | L | \lambda_2 \rangle = \lambda_2 \langle \lambda_1 | \lambda_2 \rangle$. Subtracting gives $(\lambda_1 - \lambda_2)\langle \lambda_1|\lambda_2 \rangle = 0$, so the two eigenvectors are orthogonal.</p>
+
+<p>    Suppose $\lambda_1=\lambda_2$ and let $|A\rangle = \alpha | \lambda_1 \rangle + \beta | \lambda_2 \rangle$. Then $L|A\rangle = \alpha L| \lambda_1 \rangle + \beta L |\lambda_2 \rangle, L|A\rangle = \alpha \lambda|\lambda_1 \rangle + \beta \lambda |\lambda_2$, and $L|A\rangle = \lambda (\alpha| \lambda_1 \rangle + \beta| \lambda_2 \rangle)=\lambda|A\rangle$, so these two vectors are linearly independent because any ket vector can be written as a linear combination of these two. Now we have two orthonormal basis vectors, we can extend using Gram-Schmidt to obtain our desired number of basis vectors. It remains to show that if our space is $N$-dimensional, there are $N$ orthonormal eigenvectors, which is just a simple linear algebra exercise.</p>
+
+
+<h2>Principles </h2>
+
+<p>Professor Susskind states that there are 4 basic principles of quantum mechanics:</p>
+
+<ol>
+<li>The observable or measurable quantities of quantum mechanics are represented by linear operators $L$.</li>
+<li>If the system is in eigenstate $|\lambda_i \rangle$, the result of a measurement is guaranteed to be $\lambda_i$.</li>
+<li>Unambiguously distinguishable states are represented by orthogonal vectors.</li>
+<li>If $|A\rangle$ is the state vector of a system, and the observable $L$ is measured, the probability to observe value $\lambda_i$ is $P(\lambda_i)=\langle A|\lambda_i \rangle \langle \lambda_i | A \rangle = |\langle A|\lambda_i \rangle|^2$.</li>
+<p></ol></p>
+
+<p>In particular, these conditions combine to imply that that $L$ must be Hermitian.</p>
+
+<h2>Explicit Pauli Matrices</h2>
+
+<p>Let's write down spin operators as $2\times 2$ matrices. Starting with $\sigma_z$, principle 2 tells us $\sigma_z|U \rangle = |U \rangle, \sigma_z|D\rangle = -|D\rangle$, and principle 3 tells us $\langle u|D\rangle =0$. Writing this as matrix equations, we get</p>
+<p>    \begin{align*}</p>
+<p>        \begin{pmatrix}</p>
+<p>\left(\sigma_z\right)_{11} & \left(\sigma_z\right)_{12} \\</p>
+<p>\left(\sigma_z\right)_{21} & \left(\sigma_z\right)_{22}</p>
+<p>    \end{pmatrix}</p>
+<p>\begin{pmatrix}</p>
+<p>1 \\ 0</p>
+<p>\end{pmatrix}</p>
+<p>&=</p>
+<p>\begin{pmatrix}</p>
+<p>1 \\0</p>
+<p>\end{pmatrix} \\</p>
+<p>\begin{pmatrix}</p>
+<p>\left(\sigma_z\right)_{11} & \left(\sigma_z\right)_{12} \\</p>
+<p>\left(\sigma_z\right)_{21} & \left(\sigma_z\right)_{22}</p>
+<p>\end{pmatrix}</p>
+<p>\begin{pmatrix}</p>
+<p>0 \\</p>
+<p>1</p>
+<p>\end{pmatrix}</p>
+<p>&=-</p>
+<p>\begin{pmatrix}</p>
+<p>0 \\</p>
+<p>1</p>
+<p>\end{pmatrix}</p>
+<p>    \end{align*}</p>
+<p>and the unique matrix satisfying this is</p>
+<p>\boxed{\sigma_z=\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}.}</p>
+<p>For $\sigma_x$, we have $\sigma_x |R\rangle = |R\rangle$ and $\sigma_x|L\rangle = -|L\rangle$. Recall that $|R\rangle = \frac{1}{\sqrt{2}}|U\rangle + \frac{1}{\sqrt{2}}|D\rangle$ and $|L\rangle = \frac{1}{\sqrt{2}}|U\rangle - \frac{1}{\sqrt{2}}|D\rangle$ so</p>
+<p>    \begin{align*}</p>
+<p>        \begin{pmatrix}</p>
+<p>\left(\sigma_z\right)_{11} & \left(\sigma_z\right)_{12} \\</p>
+<p>\left(\sigma_z\right)_{21} & \left(\sigma_z\right)_{22}</p>
+<p>\end{pmatrix}</p>
+<p>\begin{pmatrix}</p>
+<p>\dfrac{1}{\sqrt{2}} \\</p>
+<p>\dfrac{1}{\sqrt{2}}</p>
+<p>\end{pmatrix}</p>
+<p>&=</p>
+<p>\begin{pmatrix}</p>
+<p>\dfrac{1}{\sqrt{2}} \\</p>
+<p>\dfrac{1}{\sqrt{2}}</p>
+<p>\end{pmatrix} \\</p>
+<p>\begin{pmatrix}</p>
+<p>\left(\sigma_z\right)_{11} & \left(\sigma_z\right)_{12} \\</p>
+<p>\left(\sigma_z\right)_{21} & \left(\sigma_z\right)_{22}</p>
+<p>\end{pmatrix}</p>
+<p>\begin{pmatrix}</p>
+<p>\dfrac{1}{\sqrt{2}} \\</p>
+<p>-\dfrac{1}{\sqrt{2}}</p>
+<p>\end{pmatrix}</p>
+<p>&=-</p>
+<p>\begin{pmatrix}</p>
+<p>\dfrac{1}{\sqrt{2}} \\</p>
+<p>-\dfrac{1}{\sqrt{2}}</p>
+<p>\end{pmatrix}</p>
+<p>    \end{align*}</p>
+<p>which gives</p>
+<p>\boxed{\sigma_x=\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}.}</p>
+<p>For our last direction, $\sigma_y$, $|I\rangle = \frac{1}{\sqrt{2}}|U\rangle + \frac{i}{\sqrt{2}}|D\rangle$ and $|L\rangle = \frac{1}{\sqrt{2}}|U\rangle - \frac{i}{\sqrt{2}}|D\rangle$ so $|U\rangle = \begin{pmatrix} \frac{1}{\sqrt{2}} \\ \frac{i}{\sqrt{2}}\end{pmatrix}, |O\rangle =\begin{pmatrix} \frac{1}{\sqrt{2}} \\ -\frac{i}{\sqrt{2}}\end{pmatrix}$ so</p>
+<p>\boxed{ \sigma_y=\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}.}</p>
+<p>These three boxed matrices are collectively called the <strong>Pauli matrices</strong>. </p>
+
+<h2>Implications</h2>
+
+<p>Although $\sigma$ is not a $3$-vector (because they are written as matrices), it behaves a lot like one. Suppose $\sigma_n=\vec{\sigma}\cdot \hat{n}$. Then</p>
+<p>\sigma_n = \begin{pmatrix} n_x & (n_x-in_y) \\ (n_x+in_y) & - n_x \end{pmatrix}</p>
+<p>which gives us a way to calculate what happens when we orient the apparatus along $\hat{n}$, painting a complete picture of spin measurements in 3d space.</p>
+
+<p>If we let $\hat{n}$ sit in the $x-z$ plane, then</p>
+<p>    \sigma_n = \begin{pmatrix} \cos{\theta} & \sin{\theta} \\ \sin{\theta} & - \cos{\theta} \end{pmatrix}.</p>
+<p>The eigenvectors are $|\lambda_1 \rangle = \begin{pmatrix} \cos{\frac{\theta}{2}} \\ \sin{\frac{\theta}{2}} \end{pmatrix}, |\lambda_1 \rangle = \begin{pmatrix} -\sin{\frac{\theta}{2}} \\ \cos{\frac{\theta}{2}} \end{pmatrix}$, with eigenvalues $+1$ and $-1$, respectively. Suppose our apparatus initially points along the $z$-axis, and we rotate it so it lies along the $\hat{n}$ axis. Giving it a spin in the $|U\rangle$ state, what's the probability of observing $\sigma_n =\pm1$. Principle 4 gives us</p>
+<p>    \begin{align*}</p>
+<p>        P(+1)=|\langle U | \lambda_1 \rangle|^2 = \cos^2{\frac{\theta}{2}} \\</p>
+<p>        P(-1)=|\langle U | \lambda_2 \rangle|^2 = \sin^2{\frac{\theta}{2}} \\</p>
+<p>    \end{align*}</p>
+<p>The expected value is thus</p>
+<p>    \langle L \rangle = \sum_i \lambda_i P(\lambda_i) = \cos^2{\frac{\theta}{2}}-\sin^2{\frac{\theta}{2}} = \cos{\theta}.</p>
+<p>There is one more theorem for this section:</p>
+
+
+    
+<p>    (The Spin-Polarization Principle)</p>
+
+<p>Any state of a single spin is an eigenvector of some component of the spin.</p>
+
+
+<p>This means given a state $|A\rangle$, there exists some direction $\hat{n}$ such that $\vec{\sigma} \cdot \vec{n}|A\rangle = |A\rangle$. Two implications: 1) for any spin state, we can orient the apparatus in some orientation so that it registers $+1$, and 2) there is no state where the expected value of all three components of the spin is $0$. In fact, $\langle \sigma_x \rangle^2 + \langle \sigma_y \rangle^2 + \langle \sigma_z \rangle^2=1$.</p>
+
+<h1>Lecture 4 - Time and Change</h1>
+
+<h2>Unitarity</h2>
+<p>In classical mechanics, professor Susskind introduced what he called the <strong>minus first law</strong>: information from the past is never lost. The quantum analog is the <strong>conservation of distinctions</strong>. Let the state of the system be $|\Psi(t)\rangle$. The state at time $t$ is a linear operator $U(t)$, which satisfies $|\Psi(t)\rangle = U(t)|\Psi(0)\rangle$, where $U$ is called the <strong>time-development operator</strong> for the system. This is based on the basic dynamical assumption of quantum mechanics is that if you know the state at one time, then the quantum equations of motion tell you what it will be later.</p>
+
+<p>The main difference between classical and quantum determinism is as follows: classical determinism allows us to predict the results of an experiment, which quantum determinism allows us to compute the probabilities of the outcomes of later experiments.</p>
+
+<p>Suppose $|\Psi(0)\rangle$ and $|\Phi(0)\rangle$ are orthogonal. Then $\langle \Psi(0)|\Phi(0)\rangle =0$, and the conservation of distinctions implies $\langle \Psi(t)|\Phi(t)\rangle =0$. Rewriting $\langle \Psi(t)| = \langle \Psi(0)|U^\dagger(t)$, and $|\Psi(t)\rangle = U(t)|\Psi(0)\rangle$ from earlier implies $\langle \Psi(0)|U^\dagger U(t)|\Phi(0)\rangle =0$. Consider an orthonormal basis $|i\rangle$ with $|\Phi(0)\rangle$ and $|\Psi(0)\rangle$ as basis vectors. We get $\langle i| U^\dagger(t)U(t)|j \rangle = \delta_{ij}$, so $U^\dagger U=I$ (an operator that satisfies this condition is called <strong>unitary</strong>).</p>
+
+<p>Now we can introduce our fifth principle of quantum mechanics:</p>
+
+<ol>
+<li>The evolution of state vectors with time is unitary.</li>
+<p></ol></p>
+
+<h2>The Hamiltonian</h2>
+
+<p>Let $U(\epsilon)=I-i\epsilon H$. Then $(I+i\epsilon H^\dagger)(1-i\epsilon H)=I \implies H^\dagger = H$. This value $H$ is called the <strong>quantum Hamiltonian</strong>, a observable where the eigenvalues meausure the energy of a quantum system. Using $|\Psi(t) \rangle = U(t)|\Psi(0)\rangle$, and taking $t=\epsilon$, we get $|\Psi(\epsilon)\rangle = |\Psi(0)\rangle - i\epsilon H |\Psi(0)\rangle$. Rearranging and taking $\epsilon\to 0$ gives </p>
+<p>    \dfrac{\partial |\Psi \rangle}{\partial t} = -H|\Psi\rangle,</p>
+
+<p>the <strong>time-dependent Schrödinger equation</strong>. So the reason we care about the quantum Hamiltonian is that it tells us how the state of an undisturbed system evolves with time.</p>
+
+<p><strong>Planck's constant</strong> is $\hbar=1.0545\times 10^{34} kg\cdot m^2/s$, which we need to insert to the time-dependent Schrödinger equation to make the dimensions actually make sense:</p>
+<p>    \hbar \dfrac{\partial |\Psi \rangle}{\partial t} = -i H|\Psi\rangle.</p>
+<p>It is worth noting that Planck originally came up with the constant $h = 2\pi \hbar$, but later physicists changed it to remove the need to write $2\pi$ in a ton of places.</p>
+
+<h2>Averaging</h2>
+
+<p>Last time, we look at averages. Here's a nice trick to compute averages:</p>
+<p>    \langle L \rangle = \langle A | L | A \rangle</p>
+<p>where $|A\rangle$ is the noramlized state of a quantum system. To prove this, rewrite $|A\rangle = \sum_i \alpha_i |\lambda_i \rangle \implies L|A\rangle = \sum_i \alpha_i L |\lambda_i \rangle$. Since $L|\lambda_i \rangle = \lambda_i |\lambda_i \rangle \implies L|A\rangle = \sum_i \alpha_i \lambda_i |\lambda_i \rangle$. Lastly, take the inner product with $\langle A |$ to get $\langle A|L|A\rangle = \sum_i (\alpha_i^* \alpha_i)\lambda_i$, and the result follows.</p>
+
+<p>We can use averaging to show that we can always scale a state-vector by whatever constant factors $e^{i\theta}$ we want and nothing will change: take $|A\rangle = \sum_i \alpha_i |\lambda_i \rangle$. If we let $|B\rangle = e^{i\theta} |A\rangle$, we can show that they have the same magnitude because $\langle B|B\rangle = \langle Ae^{-i\theta} | e^{i\theta} A \rangle = \langle A|A \rangle$. Similarly, the eigenvalues will be $|\lambda_j \rangle$ with probability $\alpha_j^<em> e^{-i\theta}e^{i\theta} \alpha_j = \alpha_j^</em> \alpha_j$ for both $|A\rangle$ and $|B\rangle$. Finally, we have $\langle L \rangle = \langle B|L|B \rangle = \langle Ae^{-i\theta} | L | e^{i\theta}A \rangle = \langle A|L|A\rangle$.</p>
+
+<h2>Comparison To Classical Mechanics</h2>
+
+<p>The expected value changes in time because</p>
+<p>    \begin{align*}</p>
+<p>        \dfrac{\,d}{\,dt}(\Psi(t)|L|\Psi(t))&=\langle \dot{\Psi}(t)|L|\Psi(t)\rangle + \langle \Psi(t)|L|\dot{\Psi}(t) \rangle \\</p>
+<p>        &= \dfrac{i}{h} \langle \Psi(t)|HL|\Psi(t) \rangle - \dfrac{i}{h} \langle \Psi(t)|LH | \Psi(t)\rangle \\</p>
+<p>        &= \dfrac{i}{h} \langle \Psi(t)| HL - LH |\Psi(t) \rangle \\</p>
+<p>        &= \dfrac{i}{h}\langle [H,L]\rangle \qquad \text{or} \qquad -\dfrac{i}{h}\langle [L,H]\rangle</p>
+<p>    \end{align*}</p>
+<p>where the second lines follows from Schrödinger. The term $[L,M]=LM-ML$ is called the <strong>commutator</strong> and is usually not $0$. One important fact is that the commutator bracket is skew symmetric: $LM-ML=[L,M]$. Sometimes, we rewrite this whole thing more succinctly as</p>
+<p>    \dfrac{\,dL}{\,dt}=-\dfrac{i}{h}[L,H].</p>
+<p>We may notice that the commutator $[L,H]$ is awfully similar to the Poisson bracket $i\hbar \{L,H\}$. If we plug this into the previous equation, we get</p>
+<p>    \dfrac{\,dL}{\,dt}=\{L,H\}.</p>
+<p>The major difference in quantum physics is that there is a difference between $FG$ and $GF$ for two linear operators $F,G$, whereas this is not true in classical mechanics.</p>
+
+<p>What does it mean when an observable (which we call $Q$) is conserved? This means $[Q,H]=0 \implies [Q^n, H]=0$. $H$ is the definition of energy in quantum mechanics, and obviously, $[H,H]=0$, which is an example of conservation of energy.</p>
+
+<p>Spin has an energy depending on it's orientation when placed in a magnetic field: let $H\sim \vec{\sigma} \cdot \vec{B}=\sigma_x B_x + \sigma_y B_y + \sigma_z B_z$. For a simple example: take the magnetic field along the $z$-axis. Then $H=\frac{\hbar \omega}{2} \sigma_z$ for some constant $\omega$. The average values are</p>
+<p>    \begin{align*}</p>
+<p>        \langle \sigma_x \rangle &= -\dfrac{i}{\hbar} \langle [\sigma_x, H]\rangle = -\dfrac{i\omega}{2}\langle [\sigma_x, \sigma_z]\rangle \\</p>
+<p>        \langle \sigma_y \rangle &= -\dfrac{i}{\hbar} \langle [\sigma_y, H]\rangle = -\dfrac{i\omega}{2}\langle [\sigma_y, \sigma_z]\rangle \\</p>
+<p>        \langle \sigma_x \rangle &= -\dfrac{i}{\hbar} \langle [\sigma_x, H]\rangle = -\dfrac{i\omega}{2}\langle [\sigma_z, \sigma_z]\rangle \\</p>
+<p>    \end{align*}</p>
+<p>The Pauli matrices verify that $[\sigma_x, \sigma_y]=2i\sigma_z, [\sigma_y, \sigma_z]=2i\sigma_x$, and $[\sigma_z, \sigma_x]=2i\sigma_y$. Thus,</p>
+<p>    \begin{align*}</p>
+<p>        \langle \sigma_x \rangle &= -\omega \langle \sigma_y \rangle \\</p>
+<p>        \langle \sigma_y \rangle &= \omega \langle \sigma_x \rangle \\</p>
+<p>        \langle \sigma_z \rangle &= 0.</p>
+<p>    \end{align*}</p>
+<p>This is exactly the same equations as the classical rotor in a magnetic field! In classical mechanics, <strong>precessing</strong> is the $x$ and $y$ components of angular momentum, whereas in quantum mechanics, it's the expected value.</p>
+
+<h2>Solving Schrödinger</h2>
+
+<p>The iconic Schrödinger is</p>
+<p>    i\hbar \dfrac{\partial \Psi(x)}{\partial t}=-\dfrac{\hbar}{2m} \dfrac{\partial^2 \Psi(x)}{\partial x^2}+U(x)\Psi(x).</p>
+<p>Earlier, we saw the time-dependent Schrödinger equation:</p>
+<p>    \hbar \dfrac{\partial |\Psi\rangle}{\partial t}=-iH|\Psi \rangle.</p>
+<p>There is also the time-independent Schrödinger equation:</p>
+<p>    H|E_j \rangle = E_j | E_j \rangle.</p>
+<p>Because $H$ is energy, $E_j$ is the <strong>energy eigenvalues</strong> and $|E_j\rangle$ the <strong>energy eigenvectors</strong>. Suppose we know these. We can now solve the time-dependent analog by plugging in $|\Psi(t) \rangle = \sum_j \alpha_j(t) |E_j \rangle$ to get </p>
+<p>    \begin{align*}</p>
+<p>        &\sum_j \dot{\alpha}_j(t)|E_j \rangle = -\dfrac{i}{\hbar}H\sum_j \alpha_j(t) |E_j \rangle \\</p>
+<p>        \implies & \sum_j \dot{\alpha}_j(t)|E_j \rangle = -\dfrac{i}{\hbar}\sum_j E_j \alpha_j(t) |E_j \rangle \\</p>
+<p>        \implies & \sum_j \{ \dot{\alpha}_j(t) + \dfrac{i}{\hbar} E_j \alpha_j(t) \} |E_j \rangle =0.</p>
+<p>    \end{align*}</p>
+<p>When the sum of basis vectors is $0$, every coefficient must be $0$, so</p>
+<p>        \dfrac{\,d \alpha_j(t)}{\,dt} =-\dfrac{i}{\hbar} E_j\alpha_j(t) \implies \alpha_j(t)=a_j(0)e^{-\frac{i}{\hbar}E_jt}.</p>
+<p>This is our first example of the connection between energy and frequency. </p>
+
+<p>At $t=0$, we have $\alpha_j(0)=\langle E_j | \Psi(0)\rangle$, so the time-dependent Schrödinger can be written as</p>
+<p>    \begin{align*}</p>
+<p>        |\Psi(t) \rangle &= \sum_j \langle E_j | \Psi(0)\rangle e^{-\frac{i}{h}E_jt}|E_j \rangle \\</p>
+<p>        &= \sum_j |E_j \rangle \langle E_j | \Psi(0)\rangle e^{-\frac{i}{\hbar}E_j t}.</p>
+<p>    \end{align*}</p>
+<p>Using this, we can now predict probabilities: the probability for outcome $\lambda$ is $P_\lambda(t) = |\langle \lambda|\Psi(t)\rangle|^2$, and we can calculate the ket using Schrödinger.</p>
+
+<h2>Wave Function Collapse</h2>
+<p>Let the state-vector be $\sum_j \alpha_j |\lambda_j\rangle$ before the measurement of $L$. The apparatus measures $\lambda_j$ with probability $|\alpha_j|^2$, and then leaves the system in a single eigenstate of $L$, namely $|\lambda_j|$. This is because we need to cnosider the apparatus as part of our single quantum system; otherwise, the state vector might reduce to a single eigenstate due to interaction with the external world. This is known as the <strong>wave function collapse</strong>, which we'll talk about later.</p>
+
+<h1>Lecture 5 - Uncertainty and Time Dependence</h1>
+
+<h2>Simultaneous Eigenvectors </h2>
+<p>Consider a two-spin system. If we measure both spins, the system is in a state that is simultaneously an eigenvector of $L$ and $M$ - a <strong>simulatenous eigenvector</strong>. Assume that there is a basis of state vectors $|\lambda, \mu$ that are simultaneous eigenvectors, or</p>
+<p>    \begin{align*}</p>
+<p>        L|\lambda, \mu \rangle &= \lambda | \lambda, \mu \rangle \\</p>
+<p>        M|\lambda, \mu \rangle &= \mu | \lambda, \mu \rangle.</p>
+<p>    \end{align*}</p>
+<p>Using some algebra we can get</p>
+<p>    [L, M] | \lambda, \mu \rangle =0.</p>
+<p>So the condition for two observables to be simultaneously measurable is that they commute.</p>
+
+<h2>Wave Functions </h2>
+
+<p>Let $|a,b,c,...\rangle$ be orthonormal basis vectors with entries as commuting observables $A,B,C,...$. We can rewrite any state vector as</p>
+<p>    |\Psi \rangle = \sum_{a,b,c,...} \psi(a,b,c,...)|a,b,c,...\rangle.</p>
+<p>Then the <strong>wave function</strong> is</p>
+<p>    \psi(a,b,c,...)=\langle a,b,c,...|\Psi \rangle.</p>
+<p>The probability for the commuting observables to have values $a,b,c,...$ is </p>
+<p>    P(a,b,c,...)=\psi^*(a,b,c,...)\psi(a,b,c,...)</p>
+<p>and we know that the total probability sums to $1:$</p>
+<p>    \sum_{a,b,c,...}\psi^*(a,b,c,...)\psi(a,b,c,...)=1.</p>
+<p>We use $\Psi$ for state-vectors and $\psi$ for wave functions. </p>
+
+<h2>Uncertainty</h2>
+
+<p>Another reason to care about the Pauli matrices is that every $2\times 2$ Hermitian operator has the Pauli matrices and the identity matrix as a basis. Can we simultaneously measure any pair of spin components? When two observables do not commute, in general, it is impossible to precisely know everything about both. For example, since $[\sigma_x, \sigma_y]=2i\sigma_z, [\sigma_y, \sigma_z]=2i\sigma_x$, and $[\sigma_z, \sigma_x]=2i\sigma_y$, we cannot simultaneously measure two spin components. </p>
+
+<p>In general, we cannot simultaneously measure two observables with perfect precision unless they commute. We must have some uncertainty, by which we mean the <strong>standard deviation</strong></p>
+
+<p>    \overline{A} = A-\langle A \rangle.</p>
+<p>The eigenvalues of $\overline{A}$ are $\overline{a}=a-\langle A \rangle$, and the square of the uncertainty is $(\Delta A)^2=\sum_a \overline{a}^2 P(a) = \sum_a (a-\langle A \rangle)^2 P(a) = \langle \Psi | \overline{A}^2 | \Psi$.</p>
+
+<p>To bound uncertainties, we often need inequalities, most notably the <strong>triangle inequality</strong>, $|\vec{X}| |\vec{Y}| \ge \vec{X} \cdot \vec{Y}$ and the <strong>Cauchy-Schwarz inequality</strong>, which is sometimes written in the form $|\vec{X}|^2 |\vec{Y}|^2 \ge |\vec{X} \cdot \vec{Y}|^2$ but we will use the (equivalent) form $2|X||Y| \ge |\langle X|Y \rangle + \langle Y|X \rangle|$.</p>
+
+<p>Let $|\Psi\rangle$ be a ket and $A, B$ be observables. Define $|X\rangle = A|\Psi\rangle, |Y\rangle = iB|\Psi \rangle$. Plugging this into Cauchy-Schwarz gives</p>
+<p>    \begin{align*}</p>
+<p>        &2\sqrt{\langle A^2 \rangle \langle B^2 \rangle} \ge | \langle \Psi|[A,B]|\Psi \rangle| \\</p>
+<p>        \implies & \Delta A \Delta B \ge \dfrac{1}{2} |\langle \Psi | [A,B] |\Psi \rangle |</p>
+<p>    \end{align*}</p>
+<h1>Lecture 6 - Combining Systems: Entanglement</h1>
+
+<h2>Tensor Products</h2>
+
+<p>Now, let there be two systems: system $A$ with space of states $S_A$ and system $B$ with space of states $S_B$. The combined system is then $S_A\otimes S_B$, with basis $|ab\rangle$.</p>
+
+<p>Suppose Charlie has a dime ($\sigma = +1$ ($\sigma = -1$), and gives one each to Alice and Bob. Then, Alice and Bob travel very far away from each other without looking at the coin. When Alice finally looks at the coin, she will immediately know what Bob's coin is. So $\langle \sigma_A \rangle = \langle \sigma_B \rangle =0$ and $\langle \sigma_A \sigma_B \rangle = -1$. $\langle \sigma_A \sigma_B \rangle - \langle \sigma_A \rangle \langle \sigma_B \rangle$ is the <strong>statistical correlation</strong>, and since it is nonzero Alice and Bob's observations are correlated.</p>
+
+<p>Let's take the quantum version, with spins rather than coins. We can write any state in the combined system as $|\Psi \rangle = \sum_{a,b} \psi(a,b)|ab \rangle$. Let the components of Alice's spin be $\sigma_x, \sigma_y, \sigma_z$ with her ket vectors notated $|A\}$, and Bob's spin be $\tau_x, \tau_y, \tau_z$ with his ket vectors notated as usual. If Alice prepares her spin in state $\alpha_u |U\} + \alpha_d |D\}$ and Bob prepares his in state $\beta_u|U\rangle + \beta_d |D\rangle$, the combined product state is then </p>
+<p>    \{ \alpha_u |U\} + \alpha_d |D\} \}\otimes \{\beta_u|U\rangle + \beta_d |D\rangle\} = \alpha_u \beta_u |UU\rangle = \alpha_u\beta_d |UD \rangle + \alpha_d \beta_u |DU \rangle + \alpha_d \beta_d |DD\rangle.</p>
+<p>Note that the tensor product is a vector space for studying combined systems; a product state is a state vector of the proudct space. Most state-vectors in the product space are not product states.</p>
+
+<p>Tensor products work in matrices the same way we'd expect them to work.</p>
+
+<h2>Entanglement</h2>
+
+<p>The most general vector is</p>
+<p>    \psi_{UU}|UU\rangle + \psi_{UD}|UD\rangle + \psi_{DU}|DU\rangle + \psi_{DD}|DD|\rangle</p>
+<p>with normalization condition $\psi_{UU}^<em>\psi_{UU}+\psi_{UD}^</em>\psi_{UD}+\psi_{DU}^<em>\psi_{DU}+\psi_{DD}^</em>\psi_{DD}=1$</p>
+<p>so there are 6 real parameters. This space of states is much more complicated than just the individual ones combined; this is due to <strong>entanglement</strong>.</p>
+
+<p>Two examples of maximally entangled states are the <strong>singlet state</strong> $|\text{sing}\rangle = \frac{1}{\sqrt{2}}(|UD \rangle - |DU \rangle)$ and the triplet states $\frac{1}{\sqrt{2}}(|UD\rangle + |DU \rangle), \frac{1}{\sqrt{2}}(|UU\rangle + |DD \rangle)$ and $\frac{1}{\sqrt{2}}(|UU\rangle - |DD \rangle)$.</p>
+
+<p>So inside a maximally entangled state: 1) An entangled state is a complete description of the combined system and nothing else can be known about it, and 2) In a maximally entangled state, nothing is known about the individual subsystems.</p>
+
+<p>Recall the spin-polarization principle: this holds for all product, states but does not hold for $|\text{sing}\rangle$. In fact, we can show that $\langle \sigma_x \rangle = \langle \sigma_y \rangle = \langle \sigma_z \rangle =0$ because</p>
+<p>    \begin{align*}</p>
+<p>        \langle \sigma_z \rangle &= \langle \text{sing} | \sigma_z | \text{sing} \rangle \\</p>
+<p>         &= \langle \text{sing} |\sigma_z \dfrac{1}{\sqrt{2}} (|UD \rangle - |DU \rangle )\\</p>
+<p>    \end{align*}</p>
+<p>so</p>
+<p>    \begin{align*}</p>
+<p>        &\langle \text{sing}|\sigma_z | \text{sing} \rangle = \langle \text{sing}|\dfrac{1}{\sqrt{2}}(|UD\rangle + |DU \rangle) \\</p>
+<p>\implies & \langle \sigma_z \rangle = \dfrac{1}{2} \left( \langle UD| - \langle DU |\right)\left(|UD \rangle + |DU\rangle\right).</p>
+<p>    \end{align*}</p>
+<p>and similarly we can show</p>
+<p>    \begin{align*}</p>
+<p>        \langle \sigma_x \rangle &= \dfrac{1}{2} \left( \langle UD| - \langle DU |\right)\left(|DD \rangle + |UU\rangle\right) \\</p>
+<p>        \langle \sigma_y \rangle &= \dfrac{1}{2} \left( \langle UD| - \langle DU |\right)\left(i|DD \rangle + i|UU\rangle\right) \\</p>
+<p>    \end{align*}</p>
+<p>So there's something hidden here.</p>
+
+<p>Charlie gives two $|\text{sing}\rangle$ and Alice and Bob measure and multiply their results to obtain $\tau_z\sigma_z$. We get</p>
+<p>    \begin{align*}</p>
+<p>        \tau_z \sigma_z \dfrac{1}{\sqrt{2}}{|UD\rangle - |DU \rangle} &= \tau_z \dfrac{1}{\sqrt{2}} (|UD\rangle + |DU\rangle)\\</p>
+<p>        & = \dfrac{1}{\sqrt{2}} (-|UD\rangle + |DU \rangle)</p>
+<p>    \end{align*}</p>
+<p>so $\tau_z\sigma_z |\text{sing}\rangle = -|\text{sing}\rangle$, or $|\text{sing}\rangle$ is an eigevector of $\tau_z \sigma_z$ with eigenvalue $-1$. We can check that this is also true when we replace $z$ with $x$ or $y$.</p>
+
+<p>So we need an apparatus that measures in terms of $\vec{\sigma}\cdot \vec{\tau}$, instead of measuring one component at a time. How? Sometimes the Hamiltonian of neighboring spins is proportional to $\vec{\sigma}\cdot \vec{\tau}$, so we just need to measure the energy of the atomic pair. </p>
+
+<p>Why are they called singlets and triplets? The singlet is an eigenvector with one eigenvalue, and the triplets are all eigenvectors with a different degenerate eigenvalue.</p>
+
+<h1>Lecture 7 - More On Entanglement</h1>
+
+<h2>Outer Products and Density Matrices</h2>
+
+<p>We can also form the <strong>outer product</strong> $|\psi \rangle \langle \phi |$, which is a linear operator that acts on a ket by $|\psi \rangle \langle \phi | |A\rangle = |\psi \rangle \langle \phi |A \rangle$ and acts on a bra by $\langle B| |\psi \rangle \langle \phi | = \langle B|\psi \rangle \langle \phi |$. The case $|\psi \rangle \langle \psi |$ is called a <strong>projection operator</strong>, which is Hermitian and satisfies the following: $|\psi\rangle$ is an eigenvector of its projection operator with eigenvalue $1$; any vector orthogonal to $|\psi \rangle$ is an eigenvector with eigenvalue $0$; $|\psi \rangle \langle \phi |^2 = |\psi \rangle \langle \phi |$; the trace is $1$; $\sum_i |i \rangle \langle i | = I$ where $i$ is a basis; and lastly, $\langle L \rangle = \text{Tr} |\psi \rangle \langle \psi |L$.</p>
+
+<p>The reason why we care is because the <strong>density matrix</strong> defined as $\rho = \frac{1}{2} |\psi \rangle \langle \psi | + \frac{1}{2} |\phi \rangle \langle \phi |$, which is useful because $\langle L \rangle = \text{Tr} \rho L$. We can extend this to $n$ states easily.</p>
+
+<p>Suppose Alice knows a wave function $\Psi(a,b)$, but wishes to extract as much knowledge about $a$ without caring about $b$. Then</p>
+<p>    \begin{align*}</p>
+<p>        \langle L \rangle &= \sum_{ab, a'b'} \Psi^*(a'b')L_{a'b', ab}\Psi(ab)\\</p>
+<p>        &= \sum_{a,b,a'}\Psi^*(a'b)L_{a',a}\Psi(ab)</p>
+<p>    \end{align*}</p>
+<p>and we can write the information as a matrix $\rho_{aa'}=\sum_b \Psi^*(a'b)\Psi(ab)$. This shows that we can remove Bob's information without removing any of Alice's information; we can take $L_{a'b', ab}=L_{a'a}\delta_{b'b}$ to "filter out" Bob's information, which gives</p>
+<p>    \begin{align*}</p>
+<p>        \langle L \rangle &= \langle \Psi |L|\Psi \rangle \\</p>
+<p>        &= \sum_{a,b,a',b'}\psi^*(a',b')L_{a'b', ab}\psi(a,b) \\</p>
+<p>        &= \sum_{a',b,a}\psi^*(a',b) L_{a',a}\psi(a,b) \\</p>
+<p>        &=\sum_{a'a}\rho_{a'a}L_{a,a'}\\</p>
+<p>        &= \text{Tr}\rho L.</p>
+<p>    \end{align*}</p>
+<p>To know Alice's density matrix, we must first know the entire wave function. After that, we can disregard the rest and still compute everything about Alice using just her density matrix.</p>
+
+<p>Here are some properties about density matrices: they are Hermitian; $\text{Tr}(\rho)=1$; the eigenvalues lie between $0$ and $1$; for a pure state: $\rho^2=\rho,\text{Tr}\left(\rho^2\right)=1$; for a mixed or entangled state, $\rho^2\neq \rho, \text{Tr}\left(\rho^2\right)<1$.</p>
+
+<p>For a quick example: for the state vector $|\Psi \rangle =\frac{1}{\sqrt{2}} \left(|UD\rangle + |DU\rangle \right)$, the density matrix is $\begin{pmatrix}</p>
+<p>\frac{1}{2} & 0 \\</p>
+<p>0 & \frac{1}{2}</p>
+<p>\end{pmatrix}.$</p>
+
+<h2>Tests for Entanglement </h2>
+
+<ul>
+<li>The <strong>correlation test</strong>: there is no entanglement if and only if $\langle AB \rangle- \langle A \rangle \langle B \rangle =0$.</li>
+<li>The <strong>density matrix test</strong>: If the composite Alice-Bob system is ain a product state, then Alice's density matrix has exactly one eigenvalue equal to $1$, and the others are $0$. Additionally, the eigenvector with a nonzero eigenvalue is nothing but the Wave function of Alice's half of the system.</li>
+<p></ul></p>
+
+<p>One issue with quantum mechanics is that in an experiment, the apparatus does not "know" the spin state until Alice looks at it. But once she does, the wave function collapses. If we bring in Bob to consider Alice, the apparatus, and the spin as one system, once he looks at this system, their wave function collapses. And so on...</p>
+
+<p>Quantum mechanics does not violate locality, which states that it is impossible to send a signal faster than the speed of light. Let Alice's density matrix be $\rho_{aa'}=\sum_b \psi^<em>(a'b)\psi(ab)$ and $U_{bb'}$ be the unitary matrix for whatever happens to the entire system when Bob does his experiment. We get $\psi_{\text{final}}(ab)=\sum_{b'}U_{bb'}\psi(ab') \implies \psi_{\text{final}}^</em>(ab)=\sum_{b''}\psi(a'b'')U_{b'b''}^{\dagger}$, but when we plug this in, we still get the original $\rho_{aa'}=\sum_b \psi^*(a'b)\psi(ab)$ because $U$ is unitary.</p>
+
+<h2>Bell's Theorem </h2>
+
+<p>Consider a video game that tries to fool you into thinking there is a quantum spin in a magnetic field inside the computer, and we get to experiment to test this. The computer stores two normalized complex numbers $\alpha_U$ and $\alpha_D$. At the start of the game, the computer initializes these values, then solves the Schrödinger equation to update the $\alpha$'s like they were the components of the spin's state-vector. We are allowed to manipulate the angle of the apparatus.</p>
+
+<p>What if we do this on two computers? As long as they are connected throguh a cable and the computers can send messages instantaneously, we are good. But disconnecting the cable destroys the simulation. </p>
+
+<p>This is essentially <strong>Bell's theorem</strong>: classical computers need to be connected with an instantaneous cable to simulate entanglement. This is not a problem about quantum mechanics, but rather a problem with simulating quantum mechanics inside classical computers.</p>
+
+<h1>Lecture 8 - Particles and Waves</h1>
+
+<h2>Interlude: Mathematics</h2>
+
+<p>When we consider functions as vectors, we form a <strong>Hilbert space</strong>. But we need to modify things in three ways: 1) integrals replace sums so $\langle \Psi | \Phi \rangle = \int_{-\infty}^\infty \psi^<em>(x)\phi(x)\,dx$ 2) probability densities replace probabilities so $P(a,b)=\int_a^b \psi^</em>(x)\psi(x)\,dx$, and 3) Dirac delta functions replace Kronecker deltas, or a function $\delta(x-x')$ with the property that for any function $F(x), </p>
+<p>    \int_{-\infty}^\infty \delta(x-x')F(x')\,dx' = F(x).</p>
+<p>For large values of $n$, it's approximated by $\frac{n}{\sqrt{\pi}}e^{-(nx)^2}$.</p>
+
+<p>In quantum mechanics, the limits of integration span the entire axis and our have function $\to 0$ at $\infty$ to be normalized, so we can rewrite integration by parts as:</p>
+<p>    \int_{-\infty}^\infty F\dfrac{\,dG}{\,dx} \,dx = -\int_{-\infty}^\infty \dfrac{\,dF}{\,dx}G\,dx.</p>
+<p>Consider $\textbf{X}$ and $\textbf{D}$, the multiply by $x$ operator and differentiation operators. We can now see that $\textbf{X}$ is Hermitian and $\textbf{D}$ is anti-Hermitian ($D^\dagger = -D$). We can make $\textbf{D}$ Hermitian by $-i\hbar \textbf{D}$, which satisfies</p>
+<p>    -i\hbar \textbf{D}\psi(x)=-i\hbar \dfrac{\,d\psi(x)}{\,dx}.</p>
+<h2>Eigenstuff for Position and Momentum</h2>
+
+<p>For $\textbf{X}$, every real number $x_0$ is an eigenvalue of $\textbf{X}$, and the corresponding eigenvectors are functions that are infinitely concentrated at $x=x_0$. Additionally, we have $\langle x_0 | \Psi \rangle = \int_{-\infty}^\infty \delta(x-x_0)\psi(x) \implies \langle x| \Psi\rangle = \psi(x)$, and we call $\psi(x)$ the <strong>wave function in the position representation</strong>.</p>
+
+<p>Define the position operator $\textbf{P}=-i\hbar\textbf{D}$. The eigenvectors are $\psi(x)=\frac{1}{\sqrt{2\pi}}e^{\frac{ipx}{\hbar}}$ with eigenvalue $p$. Now, note that $\langle x|p \rangle = \langle p|x \rangle^*$. We can now see that the wavelength of $e^{\frac{ipx}{\hbar}}$ is given by $\lambda = \frac{2\pi \hbar}{p}$, which is one reason we call it a wave function. Let's call $\tilde{\psi}(p)=\langle \textbf{P}|\Psi \rangle$ the <strong>wave function in the momentum representation</strong>.</p>
+
+<p>The relationship between the two representations is given by the <strong>Fourier transforms</strong></p>
+<p>    \begin{align*}</p>
+<p>        \tilde{\psi}(p)&=\dfrac{1}{\sqrt{2\pi}} \int \,dx e^{-\frac{ipx}{\hbar}}\psi(x) \\</p>
+<p>         \tilde{\psi}(x)&=\dfrac{1}{\sqrt{2\pi}} \int \,dp e^{\frac{ipx}{\hbar}}\tilde{\psi}(x)</p>
+<p>    \end{align*}</p>
+
+
+<h2>Heisenberg's Uncertainty Principle </h2>
+<p>We have $[\textbf{X}, \textbf{P}]=i\hbar$ (which $\implies \{ x,p\}=1$ in the classical case). Specializing the general uncertainty principle from earlier to this case gives the famous <strong>Heisenberg's Uncertainty Principle</strong>:</p>
+<p>\Delta \textbf{X} \Delta \textbf{P} \ge \frac{\hbar}{2}</p>
+<h1>Lecture 9 - Particle Dynamics</h1>
+
+<h2>Kinematics</h2>
+
+<p>How do particles move in quantum mechanics? Plugging $\textbf{H}=c\textbf{P}$ gives </p>
+<p>    \dfrac{\partial \psi(x,t)}{\partial t}=-c\dfrac{\partial \psi(x,t)}{\partial x}</p>
+<p>so any $\psi(x-ct)$ is a solution. Since we want $\int_{-\infty}^\infty \psi^*(x)\psi(x)\,dx =1$, $\psi$ must look like a <strong>wave packet</strong>. All together, this particle can only move to the right, the energy can be either positive or negative, and the particle can only exist in a state when it moves at this particular velocity. The classical description is that momentum is conserved and the position moves with fixed velocity $c$; the quantum analog is the whole probability distribution and the expected value move with velocity $c$.</p>
+
+<p>If we add in the Hamiltonian, we can write $H=\frac{1}{2}mv^2 = \frac{p^2}{2m}$, and messing around with some algebra gives us the traditional Schrödinger equation for an ordinary nonrelativistic free particle:</p>
+<p>    i\hbar \dfrac{\partial \psi}{\partial t}=-\dfrac{\hbar^2}{2m}\dfrac{\partial^2 \psi}{\partial x^2}.</p>
+<p>To solve the time-dependent Schrödinger, we need to solve the time-independent version first. The function $\psi(x)=e^{\frac{ipx}{\hbar}}$ solves the independent version, and we can use this to solve the time-dependent version:</p>
+<p>    \psi(x,t)=\int \tilde{\psi}(p) \left( \text{exp} \dfrac{i(px-\frac{p^2t}{2m}}{\hbar} \right) \,dp.</p>
+<p>Let's look at the quantum analog of $v=\frac{p}{m}$. We have</p>
+<p>    v=\dfrac{\,d}{\,dt}\int \psi^*(x,t)x\psi(x,t).</p>
+<p>From lecture 4, we have</p>
+<p>    v=\dfrac{i}{2m\hbar}\langle [\textbf{P}^2, \textbf{X}] \rangle = \dfrac{i}{2m\hbar}\langle \textbf{P}[\textbf{P},\textbf{X}]+[\textbf{P}, \textbf{X}]\textbf{P} \rangle</p>
+<p>and using $[\textbf{P}, \textbf{X}]=-i\hbar$ gives $\langle P\rangle = mv$.</p>
+
+<p>As we saw, we can take a classical system, replace the classical phase space with a linear vector space, replace $x$ with $\textbf{X}$ and $p$ with $\textbf{P}$, and use the Hamiltonian to solve the time-dependent equation (how the wave function changes with time) or the time-independent equation (to find the eigenvectors and eigenvalues of the Hamiltonian). This process is known as <strong>quantization</strong>.</p>
+
+<h2>Forces</h2>
+
+<p>Classically,</p>
+<p>    F(x)=m\dfrac{\,d^2 x}{\,dt^2}=-\dfrac{\partial V}{\partial x}.</p>
+<p>Quantization tells us to make $\textbf{H}=\frac{\textbf{P}^2}{2m}+\textbf{V}(x)$ and modify Schrödinger to</p>
+<p>    \begin{align*}</p>
+<p>    i\hbar \dfrac{\partial \psi}{\partial t} &= -\dfrac{\hbar^2}{2m}\dfrac{\partial^2 \psi} \\</p>
+<p>    {\partial x^2}+V(x)\psi = E\psi.</p>
+<p>    \end{align*}</p>
+<p>We can show that $\textbf{X}, \textbf{V}(x)]=0$ and</p>
+<p>    \dfrac{\,d}{\,dt} \langle \textbf{P}\rangle = \dfrac{i}{2m\hbar}\langle [\textbf{P}^2, \textbf{P}]\rangle + \dfrac{i}{\hbar} \langle [\textbf{V}, \textbf{P}]\rangle.</p>
+<p>Using $[\textbf{V}(x), \textbf{P}]=i\hbar \frac{\,dV(x)}{\,dx}$ we get $\frac{\,d}{\,dt}\langle \textbf{P}\rangle = -\langle \frac{\,dv}{\,dx}\rangle$.</p>
+
+<p>This shows that the classical equations are only approximations that are good when we can replace the average of $\frac{\,dV}{dx}$ with the average of $x$. We can do this when $V(x)$ varies slowly compared to the size of the wave packets.</p>
+
+<p>For an example of a "bad potential", consider a bunch of large closely packed spikes of size $\delta x$ with $\delta x<\Delta x$. The Heisenberg Uncertainty Principle tells us $\Delta x \sim \frac{\hbar}{m\Delta v}$, which shows that large masses and smooth potentials work more classically; particles with low mass moving through an abrupt potential behave like a quantum mechanical system. When the equality of Heisenberg's Uncertainty Principle holds, these are the <strong>Gaussian wave packets</strong>, which we'll discuss later.</p>
+
+<h2>Path Integrals</h2>
+
+<p>Classically, the action is $A=\int_{t_1}^{t_2} L(x,x)\,dt = \int_{t_1}^{t_2}\left( \frac{mx^2}{2} - V(x) \right)\,dt$. The quantum analog question is: given a particle starts at $(x_1,t_1)$, what is the amplitude $C_{1,2}$ that it shows up at $(x_2,t_2)$? We have</p>
+<p>    \begin{align*}</p>
+<p>        C_{1,2}&=\langle x_2 | e^{-iH(t_2-t_1)}|x_1\rangle\\</p>
+<p>        &= \int \,dx \langle x_2 |e^{-iHt/2}|x \rangle \langle x|e^{-iHt/2}|x_1 \rangle \\</p>
+<p>        &= \int_{\text{paths}}e^{\frac{iA}{\hbar}}</p>
+<p>    \end{align*}</p>
+<p>which is the extremely powerful path integral formulation by Feynman.</p>
+
+<h1>Lecture 10 - Harmonic Oscillator</h1>
+
+<h2>Classical vs Quantum </h2>
+<p>Classically, $L=\frac{1}{2}my^2-\frac{1}{2}ky^2 = \frac{1}{2}x^2-\frac{1}{2}\omega^2 x^2$ where $x=\sqrt{m}y$, $\omega = \sqrt{\frac{k}{m}}$. The Lagrangian is $\frac{\partial L}{\partial x}=\frac{\,d}{\,dt}\frac{\partial L}{\partial \dot{x}} \implies x=A\cos(\omega t)+B\sin(\omega t)$.</p>
+
+<p>We have $p=\frac{\partial L}{\partial \dot{x}}=\dot{x}$ so $H=p\dot{x}-\mathcal{L}=\frac{1}{2}\dot{x}^2 + \frac{1}{2}\omega^2x^2 =\frac{1}{2}p^2 + \frac{1}{2}\omega^2 x^2$. For the quantum mechanical version, we have $\mathbf{H}|\psi(x)\rangle \implies -\frac{\hbar^2}{2} \frac{\partial^2 \psi(x)}{\partial x^2}+\frac{1}{2}\omega^2 x^2 \psi(x)$. Plugging this into the time-dependent Schrödinger gives</p>
+<p>    i\dfrac{\partial \psi}{\partial t} = -\dfrac{\hbar}{2}\dfrac{\partial^2 \psi}{\partial x^2}+\dfrac{1}{2\hbar}\omega^2 x^2 \psi.</p>
+<h2>Energy Levels</h2>
+<p>We can also calculate the energy levels by solving the time-independent Schrödinger:</p>
+<p>    -\dfrac{\hbar^2}{2} \dfrac{\partial^2 \psi_E(x)}{\partial x^2}+\dfrac{1}{2} \omega^2 x^2 \psi_E(x)=E\psi_E(x).</p>
+<p>But there are a bunch of nonsensical solutions that make no sense physically, we need to impose conditions such as: physical solutions of the Schrödinger equation must be normalizable.</p>
+
+<p>The lowest energy level is the <strong>ground state</strong> $\psi_0(x)$. To identify this, there is a theorem (left unproved): the ground-state wave function for any potential has no zeros and it's the only energy eigenstate that has no nodes. With a huge amount of algebra we can reduce the Schrödinger to</p>
+<p>    \dfrac{\hbar}{2} \omega e^{-\frac{\omega}{2\hbar}x^2}=Ee^{-\frac{\omega}{2\hbar}x^2}.</p>
+<p>We can write $E_0=\frac{\omega \hbar}{2}$ and $\psi_0(x)=e^{-\frac{\omega}{2\hbar}x^2}$.</p>
+
+<h2>Creation and Annihilation </h2>
+<p>Take $\mathbf{H}=\frac{1}{2}(\mathbf{P}^2 + \omega^2 \mathbf{X}^2)= \frac{1}{2} (\mathbf{P}+i\omega \mathbf{X})(\mathbf{P}-i\omega \mathbf{X})+\frac{\omega \hbar}{2}$. Consider the lowering operator $\mathbf{a}^- = \frac{i}{\sqrt{2\omega \hbar}}(\mathbf{P}-i\omega \mathbf{X})$ and the raising operator $\mathbf{a}^+ = \frac{-i}{\sqrt{2\omega \hbar}}(\mathbf{P}+i\omega \mathbf{X})$. We can now rewrite $\mathbf{H}=\omega \hbar (\mathbf{a}^+ \mathbf{a}^- + \frac{1}{2})$. Additionally, we have $[\mathbf{a}^-, \mathbf{a}^+]$ and defining $\mathbf{N}=\mathbf{a}^+ \mathbf{a}^-$ gives $\mathbf{H}=\omega \hbar(\mathbf{N}+\frac{1}{2})$, as well as the relations $[\mathbf{a}^-, \mathbf{N}]=\mathbf{a}^-$ and $[\mathbf{a}^+, \mathbf{N}]=-\mathbf{a}^+$. Since $\mathbf{a}^+|n\rangle = | n+1 \rangle$ and $\mathbf{a}^-|n\rangle = |n-1 \rangle$, we can show that $E_n=\omega\hbar (n+\frac{1}{2})$.</p>
+
+<h2>Wave Functions, Again</h2>
+
+<p>We have $\frac{i}{\sqrt{2\omega \hbar}}(\mathbf{P}-i\omega \mathbf{X})\psi_0(x)=0 \implies \frac{\,d\psi_0}{\,dx}=-\frac{\omega x}{\hbar}\psi_0(x)$ which has solution $e^{-\frac{\omega}{2\hbar}x^2}$. Applying the raising operator gives $\psi_1(x)=2i\omega x \psi_0(x)$, and we can do this as many times as we want to get $\psi_n(x)$, and the polynomials in this sequence are called the <strong>Hermite polynomials</strong>.</p>
+
+<p>These eigenfunctions also show <strong>quantum tunneling</strong>: they approach zero asymptotically but never reach $0$, so there's a chance the particle is "outside the bowl" that defines its potential energy function.</p>
+
+</main>
+<footer>
+<a href="/blog/index.html">&larr; Back to Blog</a>
+<p class="footer-nav"><a href="/blog/canada-usa-mathcamp-23.html">&laquo; Canada/USA Mathcamp '23</a> | <a href="/blog/learning-project-knot-theory.html">Learning Project: Knot Theory &raquo;</a></p>
+</footer>
+</div>
+</body>
+</html>
