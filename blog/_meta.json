@@ -1,5 +1,5 @@
 {
-  "migrated_count": 14,
+  "migrated_count": 12,
   "posts": [
     {
       "slug": "about",
@@ -45,16 +45,6 @@
       "slug": "life/summer24",
       "title": "Summer 2024",
       "date": "2024-09-02"
-    },
-    {
-      "slug": "misc/rutgers",
-      "title": "Current Trends in Mathematics: Beyond the Freshmen Horizons",
-      "date": "2024-06-16"
-    },
-    {
-      "slug": "math.gt/knot/lp",
-      "title": "Learning Project: Knot Theory",
-      "date": "2024-06-09"
     },
     {
       "slug": "phys/quantum",
