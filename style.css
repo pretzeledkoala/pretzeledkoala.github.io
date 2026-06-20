@@ -6,9 +6,15 @@ body {
   line-height: 1.7;
   color: #1a1a1a;
   background: #fff;
-  max-width: 800px;
-  margin: 0 auto;
+  margin: 0;
   padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body > * {
+  width: min(100%, 800px);
 }
 
 h1 { font-size: 1.5rem; margin: 1.5rem 0 0.5rem; font-weight: 600; }
