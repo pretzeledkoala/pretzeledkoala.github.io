@@ -18,100 +18,69 @@
         <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
     </head>
 <body>
-    <h1>Gary Hu</h1>
-    <div
-  style="
-    display:grid;
-    grid-template-columns:250px 1fr;
-    gap:20px;
-  "
->
-  <img src="pfp.jpeg" alt="Profile picture" width="250">
+    <header class="site-header">
+        <h1>Gary Hu</h1>
+        <nav class="site-nav" aria-label="Primary navigation">
+            <a href="/blog/index.html">Blog</a>
+            <a href="/travel.html">Travel</a>
+        </nav>
+    </header>
 
-  <div>
-    <p>I'm studying math at <a href="/williams.html">Williams College</a>.</p>
-    <p>I'm at the University of Oxford for the 2026-27 academic year.</p>
-    <p>Contact: gary.hu at exeter dot ox.ac.uk</p>
-    <a href="/blog/index.html">Blog</a>
-    <br>
-    <a href="travel.html">Travel Schedule</a>
-  </div>
-</div>
+    <main>
+        <section class="profile">
+            <img src="pfp.jpeg" alt="Profile picture" width="180" height="180">
+            <div class="profile-copy">
+                <p>I'm studying mathematics at <a href="/williams.html">Williams College</a>.</p>
+                <p>I'm at the University of Oxford for the 2026-27 academic year.</p>
+                <p class="contact">gary.hu at exeter dot ox.ac.uk</p>
+            </div>
+        </section>
 
-    <h2>Research Papers</h2>
+        <section>
+            <h2>Research Papers</h2>
+            <p class="section-intro">Since Fall 2024, I have been working with Rongwei Yang on a series of papers to build a spectral theory for solvable Lie algebras. Drafts are available upon request.</p>
+            <ol>
+                <li><span class="item-title">Spectral Equivalence of Complex Solvable Lie Algebras I: General Theory</span> <span class="item-meta">(with Rongwei Yang)</span></li>
+                <li><span class="item-title">Spectral Equivalence of Complex Solvable Lie Algebras II: Heisenberg Nilradical</span> <span class="item-meta">(with Rongwei Yang)</span></li>
+                <li><span class="item-title">Spectral Equivalence of Complex Solvable Lie Algebras III: Borel Nilradical</span> <span class="item-meta">(with Rongwei Yang)</span></li>
+                <li><span class="item-title">Spectral Equivalence of Complex Solvable Lie Algebras IV: Filiform and Quasifiliform Nilradical</span> <span class="item-meta">(with Rongwei Yang)</span></li>
+            </ol>
 
-    <p>
-        Since Fall 2024, I am working with Rongwei Yang on a series of papers to build a spectral theory for solvable Lie algebras. 
-        </p>
+            <p class="section-intro">At the UMD REU-CAAR in summer 2026, I worked on problems in Euclidean Ramsey theory. Drafts are available upon request.</p>
+            <ol start="5">
+                <li><span class="item-title">Measurable Euclidean Ramsey Theory for Lines and Finite Configurations</span> <span class="item-meta">(with Ryan Hoff and Yumo Liu)</span></li>
+            </ol>
 
-        <ol>
-            <li>Spectral Equivalence of Complex Solvable Lie Algebras I: General Theory (with Rongwei Yang)</li>
-            <li>Spectral Equivalence of Complex Solvable Lie Algebras II: Heisenberg Nilradical (with Rongwei Yang)</li>
-            <li>Spectral Equivalence of Complex Solvable Lie Algebras III: Borel Nilradical (with Rongwei Yang)</li>
-            <li>Spectral Equivalence of Complex Solvable Lie Algebras IV: Filiform and Quasifiliform Nilradical (with Rongwei Yang)</li>
-        </ol>
-        
-        <p>
-        At the UMD REU-CAAR in summer 2026, I worked on problems in Euclidean Ramsey theory:
-        </p>
+            <p class="section-intro">At IAS/PCMI in summer 2025, I worked on problems in extremal combinatorics.</p>
+            <ol start="6">
+                <li><span class="item-title">Lower Bounds on Intersecting Families</span> <span class="item-meta">(with Paul Hamrick; <a href="/pdf/lower-bounds-on-intersecting-families.pdf">pdf</a>)</span></li>
+            </ol>
+        </section>
 
-        <ol start="5">
-            <li>Measurable Euclidean Ramsey Theory for Lines and Finite Configurations (with Ryan Hoff and Yumo Liu)</li>
-        </ol>
+        <section>
+            <h2>Longer Expository Writing</h2>
+            <ol>
+                <li><span class="item-title">Obstructions to Triangulation in High Dimensions</span> <span class="item-meta">(work in progress)</span></li>
+                <li><span class="item-title"><a href="/pdf/fiebigs-correspondence-soergel-bimodules-braden-macpherson-sheaves.pdf">Fiebig's Correspondence Between Soergel Bimodules and Braden-MacPherson Sheaves</a></span> <span class="item-meta">(advised by Grant Barkley)</span></li>
+                <li><span class="item-title"><a href="/pdf/companion-notes-quantum-theory-geometric-viewpoint.pdf">Companion to Dan Freed's Quantum Theory From A Geometric Viewpoint</a></span> <span class="item-meta">(with Brennan Halcomb, Rauan Kaldybayev, Theodore Mollano; advised by Ivo Terek)</span></li>
+            </ol>
+        </section>
 
-        <p>
-        At IAS/PCMI in summer 2025, I worked on problems in extremal combinatorics:
-        </p>
+        <section>
+            <h2>Events</h2>
+            <ol>
+                <li><span class="item-title">Rutgers Symplectic Summer School</span><span class="item-meta">: <a href="/pdf/rutgers-symplectic-summer-school-2024.pdf">Foundational Aspects (2024)</a>, <a href="/pdf/rutgers-symplectic-summer-school-2025.pdf">Lagrangian Floer Theories (2025)</a>, Integral and p-adic Symplectic Topology (2026, coming soon)</span></li>
+                <li><span class="item-title"><a href="/pdf/bimsa-bmpsw-integrable-systems-algebraic-geometry-2024.pdf">BIMSA BMPSW on Integrable Systems and Algebraic Geometry</a></span></li>
+                <li><span class="item-title"><a href="/pdf/notre-dame-discrete-groups-topology-algebraic-geometry-2025.pdf">Notre Dame Thematic Program on Discrete Groups in Topology and Algebraic Geometry</a></span></li>
+            </ol>
+        </section>
+    </main>
 
-        <ol start="6">
-            <li>
-                Lower Bounds on Intersecting Families
-                (with Paul Hamrick; <a href="/pdf/lower-bounds-on-intersecting-families.pdf">pdf</a>)
-            </li>
-        </ol>
-
-    <h2>Longer Expository Writing</h2>
-    <ol>
-        <li>Obstructions to Triangulation in High Dimensions (Work In Progress).</li>
-        <li>
-            <a href="/pdf/fiebigs-correspondence-soergel-bimodules-braden-macpherson-sheaves.pdf">
-                Fiebig's Correspondence Between Soergel Bimodules and Braden-MacPherson Sheaves
-            </a> (advised by Grant Barkley)
-        </li>
-    
-        <li>
-            <a href="/pdf/companion-notes-quantum-theory-geometric-viewpoint.pdf">Companion to Dan Freed's Quantum Theory From A Geometric Viewpoint
-            </a> (with Brennan Halcomb, Rauan Kaldybayev, Theodore Mollano; advised by Ivo Terek)
-        </li>
-    </ol>
-
-    <h2>Notes from Events</h2>
-    <ol>
-        <li>
-            Rutgers Symplectic Summer School:
-            <a href="/pdf/rutgers-symplectic-summer-school-2024.pdf">Foundational Aspects (2024)</a>,
-            <a href="/pdf/rutgers-symplectic-summer-school-2025.pdf">Lagrangian Floer Theories (2025)</a>,
-            Integral and p-adic Symplectic Topology (2026, coming soon)
-        </li>
-    
-        <li>
-            <a href="/pdf/bimsa-bmpsw-integrable-systems-algebraic-geometry-2024.pdf">
-                BIMSA BMPSW on Integrable Systems and Algebraic Geometry
-            </a>
-        </li>
-    
-        <li>
-            <a href="/pdf/notre-dame-discrete-groups-topology-algebraic-geometry-2025.pdf">
-                Notre Dame Thematic Program on Discrete Groups in Topology and Algebraic Geometry
-            </a>
-        </li>
-    </ol>
-
-    <div style="margin-top: 2rem;">
+    <footer class="site-footer">
         <a href="http://s11.flagcounter.com/more/Vca">
-            <img src="https://s11.flagcounter.com/count2/Vca/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" />
+            <img src="https://s11.flagcounter.com/count2/Vca/bg_FFFFFF/txt_000000/border_FFFFFF/columns_1/maxflags_10/viewers_1/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter viewer count">
         </a>
-    </div>
+    </footer>
 
 </body>
 </html>
