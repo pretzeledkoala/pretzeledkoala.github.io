@@ -17,13 +17,25 @@ body > * {
   width: min(100%, 800px);
 }
 
+.profile {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.profile img {
+  display: block;
+  width: 250px;
+}
+
 h1 { font-size: 1.5rem; margin: 1.5rem 0 0.5rem; font-weight: 600; }
 h2 { font-size: 1.25rem; margin: 1.25rem 0 0.4rem; font-weight: 600; }
 h3 { font-size: 1.1rem; margin: 1rem 0 0.3rem; font-weight: 600; }
 
 p { margin: 0.5rem 0; }
 
-a { color: #2563eb; text-decoration: none; }
+a { color: #2563eb; text-decoration: none; overflow-wrap: anywhere; }
 a:hover { text-decoration: underline; }
 
 ul, ol { margin: 0.5rem 0 0.5rem 1.5rem; }
@@ -75,3 +87,33 @@ nav a { color: #555; }
 footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e5e5e5; font-size: 0.9rem; }
 
 img { max-width: 100%; height: auto; }
+
+@media (max-width: 680px) {
+  body { padding: 1.25rem 1rem; }
+
+  .profile {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .profile img {
+    width: min(100%, 250px);
+  }
+
+  ol, ul { margin-left: 1.25rem; }
+
+  ul[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}

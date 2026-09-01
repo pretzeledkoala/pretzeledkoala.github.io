@@ -1,0 +1,13 @@
+# Automated crawling and archiving are not permitted for this site.
+User-agent: *
+Disallow: /
+
+# Internet Archive / Wayback Machine crawlers.
+User-agent: archive.org_bot
+Disallow: /
+
+User-agent: ia_archiver
+Disallow: /
+
+User-agent: special_archiver
+Disallow: /
