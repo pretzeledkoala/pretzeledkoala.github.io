@@ -41,6 +41,11 @@ a:hover { text-decoration: underline; }
 ul, ol { margin: 0.5rem 0 0.5rem 1.5rem; }
 li { margin: 0.2rem 0; }
 
+.paper-meta {
+  display: block;
+  font-size: 0.95em;
+}
+
 code {
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 0.85em;
